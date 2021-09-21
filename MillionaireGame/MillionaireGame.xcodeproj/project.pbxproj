@@ -15,6 +15,7 @@
 		CA263B4626FA339400ECFCC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA263B4426FA339400ECFCC7 /* LaunchScreen.storyboard */; };
 		CA263B5126FA494A00ECFCC7 /* GameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA263B5026FA494A00ECFCC7 /* GameScreenViewController.swift */; };
 		CA263B5426FA729B00ECFCC7 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA263B5326FA729B00ECFCC7 /* Question.swift */; };
+		CA263B5926FA7E7300ECFCC7 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA263B5826FA7E7300ECFCC7 /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CA263B4726FA339400ECFCC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA263B5026FA494A00ECFCC7 /* GameScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenViewController.swift; sourceTree = "<group>"; };
 		CA263B5326FA729B00ECFCC7 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		CA263B5826FA7E7300ECFCC7 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		CA263B3826FA339200ECFCC7 /* MillionaireGame */ = {
 			isa = PBXGroup;
 			children = (
+				CA263B5726FA7E5F00ECFCC7 /* Singletones */,
 				CA263B5226FA726900ECFCC7 /* Structures */,
 				CA263B4E26FA33EE00ECFCC7 /* BaseComponents */,
 				CA263B4F26FA35E800ECFCC7 /* Controllers */,
@@ -103,6 +106,14 @@
 				CA263B5326FA729B00ECFCC7 /* Question.swift */,
 			);
 			path = Structures;
+			sourceTree = "<group>";
+		};
+		CA263B5726FA7E5F00ECFCC7 /* Singletones */ = {
+			isa = PBXGroup;
+			children = (
+				CA263B5826FA7E7300ECFCC7 /* Game.swift */,
+			);
+			path = Singletones;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA263B5426FA729B00ECFCC7 /* Question.swift in Sources */,
+				CA263B5926FA7E7300ECFCC7 /* Game.swift in Sources */,
 				CA263B3E26FA339200ECFCC7 /* StartGameController.swift in Sources */,
 				CA263B3A26FA339200ECFCC7 /* AppDelegate.swift in Sources */,
 				CA263B5126FA494A00ECFCC7 /* GameScreenViewController.swift in Sources */,

@@ -12,6 +12,7 @@ class GameScreenViewController: UIViewController {
     var currentPoints = 0
     var questionPoints = 1000
     
+    
     // Создаем IBOutlet для всех элементов контроллера
     
     @IBOutlet weak var currentScoreLabel: UILabel! {
