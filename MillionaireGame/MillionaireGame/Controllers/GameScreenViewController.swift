@@ -8,11 +8,22 @@
 import UIKit
 
 class GameScreenViewController: UIViewController {
+    // Создаем переменные для обеспечения начала игры
+    var currentPoints = 0
+    var questionPoints = 1000
     
     // Создаем IBOutlet для всех элементов контроллера
     
-    @IBOutlet weak var currentScoreLabel: UILabel!
-    @IBOutlet weak var playedSumLabel: UILabel!
+    @IBOutlet weak var currentScoreLabel: UILabel! {
+        didSet {
+            currentScoreLabel.textColor = .yellow
+        }
+    }
+    @IBOutlet weak var playedSumLabel: UILabel! {
+        didSet {
+            playedSumLabel.textColor = .yellow
+        }
+    }
     @IBOutlet weak var questionShowLabel: UILabel!
     @IBOutlet weak var firstAnswerButton: UIButton!
     @IBOutlet weak var secondAnswerButton: UIButton!
@@ -43,6 +54,9 @@ class GameScreenViewController: UIViewController {
         configScreenElement(endGameButton, nil, 10, nil, nil)
         
         nextQuestionButton.isHidden = true
+        currentScoreLabel.text = "Выигрыш: \(currentPoints)"
+        playedSumLabel.text = "Цена вопроса: \(questionPoints)"
+        
     }
     
     override func viewDidLoad() {

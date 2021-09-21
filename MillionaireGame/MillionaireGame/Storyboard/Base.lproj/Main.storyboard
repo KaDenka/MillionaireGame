@@ -102,23 +102,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9Q-fD-5mK">
-                                <rect key="frame" x="20" y="44" width="150" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9Q-fD-5mK">
+                                <rect key="frame" x="20" y="44" width="185" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="b4p-Cd-Ncq"/>
-                                    <constraint firstAttribute="height" constant="50" id="p3l-gL-ghc"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="185" id="b4p-Cd-Ncq"/>
+                                    <constraint firstAttribute="height" constant="80" id="p3l-gL-ghc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqV-Rq-qZZ">
-                                <rect key="frame" x="244" y="44" width="150" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqV-Rq-qZZ">
+                                <rect key="frame" x="209" y="44" width="185" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="QCA-Ob-CUu"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="koi-l1-fum"/>
+                                    <constraint firstAttribute="height" constant="80" id="QCA-Ob-CUu"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="185" id="koi-l1-fum"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
