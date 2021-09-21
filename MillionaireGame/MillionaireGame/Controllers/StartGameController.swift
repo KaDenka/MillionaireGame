@@ -26,20 +26,11 @@ class StartGameController: UIViewController {
         self.view.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.5505234674) // Устанавливаем цвет контроллера
         
         gameLogo.image = UIImage(named: "millionaireGameLogo") // Добавляем логотип игры на контроллер из хранилища файлов
-        // Задаем цвет текста кнопок контроллера
-        startNewGameButton.tintColor = .white
-        resultsButton.tintColor = .white
-        // Задаем форму кнопок контроллера
-        startNewGameButton.layer.cornerRadius = 30
-        resultsButton.layer.cornerRadius = 30
-        // Задаем цвет кнопок
-        startNewGameButton.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.2977679928)
-        resultsButton.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.2977679928)
-        // Задаем цвет и размер границ кнопок
-        startNewGameButton.layer.borderColor = UIColor.white.cgColor
-        resultsButton.layer.borderColor = UIColor.white.cgColor
-        startNewGameButton.layer.borderWidth = 1.5
-        resultsButton.layer.borderWidth = 1.5
+        
+        //Конфигурируем элементы интерфейса
+        
+        configScreenElement(startNewGameButton, .white, 30, nil, nil)
+        configScreenElement(resultsButton, .white, 30, nil, nil)
     }
     
 
@@ -49,6 +40,30 @@ class StartGameController: UIViewController {
        
     }
 
-
+    @IBAction func tapTheStartGameButtonAction(_ sender: UIButton) {
+    }
+    
+    @IBAction func tapResultButtonAction(_ sender: UIButton) {
+    }
+    
+    
 }
 
+public func configScreenElement<T: UIView>(_ controllerElement: T, _ tintColor: UIColor?, _ cornerRadius: CGFloat?, _ backgroundColor: UIColor?, _ colorOfBorder: CGColor?) {
+    
+    let tint = tintColor ?? .white
+    let radius = cornerRadius ?? 20
+    let background = backgroundColor ?? #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.2977679928)
+    let border = colorOfBorder ?? UIColor.white.cgColor
+    
+    // Задаем цвет текста кнопок контроллера
+    controllerElement.tintColor = tint
+    // Задаем форму кнопок контроллера
+    controllerElement.layer.cornerRadius = radius
+    // Задаем цвет кнопок
+    controllerElement.backgroundColor = background
+    // Задаем цвет и размер границ кнопок
+    controllerElement.layer.borderColor = border
+    controllerElement.layer.borderWidth = 1.5
+    controllerElement.clipsToBounds = true
+}
