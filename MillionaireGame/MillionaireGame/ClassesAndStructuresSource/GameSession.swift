@@ -11,11 +11,12 @@ class GameSession {
     
     var totalAnsweredQuestions: Int
     var totalEarnedMoney: Int
+   
     
     init (totalAnsweredQuestions: Int, totalEarnedMoney: Int) {
         self.totalAnsweredQuestions = totalAnsweredQuestions
         self.totalEarnedMoney = totalEarnedMoney
     }
-    
-    
+
 }
+
