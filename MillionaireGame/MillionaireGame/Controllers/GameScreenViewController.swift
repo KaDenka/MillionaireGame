@@ -7,10 +7,23 @@
 
 import UIKit
 
+protocol GameScreenDelegate: AnyObject {
+    func didEndGame(answeredQuestions: Int, earnedMoney: Int)
+}
+
 class GameScreenViewController: UIViewController {
+    
+    // Подгружаем базу данных для игры
+    
+    let gameQuestions = GameTemporaryDataBase.shared.gameQuestions
+    
     // Создаем переменные для обеспечения начала игры
+    var rightAnsweredQuestions = 0
     var currentPoints = 0
     var questionPoints = 1000
+    var questionIndex = 0
+    let totalQuestions = GameTemporaryDataBase.shared.gameQuestions.count
+    weak var gameDelegate: GameScreenDelegate?
     
     
     // Создаем IBOutlet для всех элементов контроллера
@@ -43,6 +56,7 @@ class GameScreenViewController: UIViewController {
         configScreenElement(currentScoreLabel, nil, nil, nil, nil)
         configScreenElement(playedSumLabel, nil, nil, nil, nil)
         configScreenElement(questionShowLabel, nil, nil, nil, nil)
+        questionShowLabel.textColor = .white
         configScreenElement(fiftyFiftyButton, nil, fiftyFiftyButton.bounds.height/2, nil, nil)
         configScreenElement(friendCallButton, nil, friendCallButton.bounds.height/2, nil, nil)
         configScreenElement(audienceHelpButton, nil, audienceHelpButton.bounds.height/2, nil, nil)
@@ -50,13 +64,9 @@ class GameScreenViewController: UIViewController {
         configScreenElement(endGameButton, nil, 10, nil, nil)
         configScreenElement(answersTableView, nil, 0, .clear, UIColor.clear.cgColor)
         
-        
-        
-        
-        
         //Добавляем дополнительный подготовительный функционал к элементам
         
-        // nextQuestionButton.isHidden = true
+        nextQuestionButton.isHidden = true
         currentScoreLabel.text = "Выигрыш: \(currentPoints)"
         playedSumLabel.text = "Цена вопроса: \(questionPoints)"
         
@@ -67,6 +77,11 @@ class GameScreenViewController: UIViewController {
         answersTableView.dataSource = self
         answersTableView.delegate = self
         
+        startGame(index: questionIndex)
+        
+        
+        
+        
     }
     
     @IBAction func tapEndGameButton(_ sender: UIButton) {
@@ -75,17 +90,22 @@ class GameScreenViewController: UIViewController {
         selectionVC.modalTransitionStyle = .flipHorizontal
         present(selectionVC, animated: true, completion: nil)
     }
+    
+    @IBAction func tapNextQuestionButtonAction(_ sender: Any) {
+        questionIndex += 1
+        
+        if questionIndex <= gameQuestions.count - 1 {
+            startGame(index: questionIndex)
+        } else {
+            dismiss(animated: true)
+        }
+        
+    }
+    
 }
 
 extension GameScreenViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        4
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 5
@@ -97,14 +117,57 @@ extension GameScreenViewController: UITableViewDataSource, UITableViewDelegate {
         return headerView
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        gameQuestions[questionIndex].answer.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Конфигурирую ячейку и текст в ней
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "answerCell") else {return UITableViewCell()}
         configScreenElement(cell, nil, 10, nil, nil)
+        cell.textLabel?.center = CGPoint(x: 0, y: 0)
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.textAlignment = .center
+        cell.textLabel?.text = gameQuestions[questionIndex].answer[indexPath.section].text
+        
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if gameQuestions[questionIndex].answer[indexPath.section].correct == true {
+            rightAnsweredQuestions += 1
+            currentPoints = currentPoints + questionPoints
+            currentScoreLabel.text = "Выигрыш: \(currentPoints)"
+            questionPoints = questionPoints * 2
+            playedSumLabel.text = "Цена вопроса: \(questionPoints)"
+            questionIndex += 1
+            if questionIndex <= gameQuestions.count - 1 {
+                startGame(index: questionIndex)
+            } else { endGame() }
+        } else { endGame() }
+    }
     
-}
+    // MARK: - Start Game Function
+    
+     func startGame (index: Int) {
+        
+        questionShowLabel.text = gameQuestions[index].question
+        answersTableView.reloadData()
+    }
+    
+    
+    
+    func endGame() {
+        self.gameDelegate?.didEndGame(answeredQuestions: rightAnsweredQuestions, earnedMoney: currentPoints)
+        dismiss(animated: true)
+    }
 
+}
 
 

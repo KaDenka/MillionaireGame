@@ -141,6 +141,9 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="ZTu-oN-tbJ"/>
                                 </constraints>
                                 <state key="normal" title="Следующий вопрос"/>
+                                <connections>
+                                    <action selector="tapNextQuestionButtonAction:" destination="djq-0E-9Oz" eventType="touchUpInside" id="1Uf-qk-nAh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4J-iR-F2t">
                                 <rect key="frame" x="182" y="669" width="50" height="50"/>

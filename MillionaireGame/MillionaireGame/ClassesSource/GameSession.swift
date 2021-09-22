@@ -9,12 +9,13 @@ import Foundation
 
 class GameSession {
     
-    var questionsCount: Int
-    var prizeMoney: Int
+    var totalAnsweredQuestions: Int
+    var totalEarnedMoney: Int
     
-    init (questionCount: Int, prizeMoney: Int) {
-        self.questionsCount = questionCount
-        self.prizeMoney = prizeMoney
+    init (totalAnsweredQuestions: Int, totalEarnedMoney: Int) {
+        self.totalAnsweredQuestions = totalAnsweredQuestions
+        self.totalEarnedMoney = totalEarnedMoney
     }
+    
     
 }

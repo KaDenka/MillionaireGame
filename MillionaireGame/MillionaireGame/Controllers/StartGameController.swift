@@ -39,6 +39,9 @@ class StartGameController: UIViewController {
     }
     
     @IBAction func tapTheStartGameButtonAction(_ sender: UIButton) {
+        
+        // var gameSession = GameSession(questionCount: 0, prizeMoney: 0)
+    
     }
     
     @IBAction func tapResultButtonAction(_ sender: UIButton) {
