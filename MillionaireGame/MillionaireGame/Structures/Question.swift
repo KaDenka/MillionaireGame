@@ -9,9 +9,10 @@ import Foundation
 
 struct Question {
     let question: String
-    let firstVariant: String
-    let secondVariant: String
-    let thirdVariant: String
-    let rightAnswer: String
+    let answer: [Answer]
 }
 
+struct Answer {
+    let text: String
+    let correct: Bool
+}

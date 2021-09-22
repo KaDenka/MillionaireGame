@@ -14,9 +14,7 @@ class StartGameController: UIViewController {
     // MARK: - Create the Controller Elements
     
     @IBOutlet weak var gameLogo: UIImageView!
-    
     @IBOutlet weak var startNewGameButton: UIButton!
-    
     @IBOutlet weak var resultsButton: UIButton!
     
     // MARK: - Config the Controller Elements Design

@@ -16,6 +16,9 @@
 		CA263B5126FA494A00ECFCC7 /* GameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA263B5026FA494A00ECFCC7 /* GameScreenViewController.swift */; };
 		CA263B5426FA729B00ECFCC7 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA263B5326FA729B00ECFCC7 /* Question.swift */; };
 		CA263B5926FA7E7300ECFCC7 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA263B5826FA7E7300ECFCC7 /* Game.swift */; };
+		CA2800CC26FBA07D003DC0F0 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2800CB26FBA07D003DC0F0 /* ResultsTableViewController.swift */; };
+		CA2800CF26FBABAE003DC0F0 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2800CE26FBABAE003DC0F0 /* GameSession.swift */; };
+		CA2800D226FBB3A7003DC0F0 /* GameTemporaryDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2800D126FBB3A7003DC0F0 /* GameTemporaryDataBase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		CA263B5026FA494A00ECFCC7 /* GameScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenViewController.swift; sourceTree = "<group>"; };
 		CA263B5326FA729B00ECFCC7 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		CA263B5826FA7E7300ECFCC7 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		CA2800CB26FBA07D003DC0F0 /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
+		CA2800CE26FBABAE003DC0F0 /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
+		CA2800D126FBB3A7003DC0F0 /* GameTemporaryDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTemporaryDataBase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +68,11 @@
 		CA263B3826FA339200ECFCC7 /* MillionaireGame */ = {
 			isa = PBXGroup;
 			children = (
+				CA2800D026FBB37E003DC0F0 /* GameTemporaryDataBase */,
+				CA2800CD26FBAB64003DC0F0 /* ClassesSource */,
+				CA263B4E26FA33EE00ECFCC7 /* BaseComponents */,
 				CA263B5726FA7E5F00ECFCC7 /* Singletones */,
 				CA263B5226FA726900ECFCC7 /* Structures */,
-				CA263B4E26FA33EE00ECFCC7 /* BaseComponents */,
 				CA263B4F26FA35E800ECFCC7 /* Controllers */,
 				CA263B4D26FA33C100ECFCC7 /* Storyboard */,
 			);
@@ -96,6 +104,7 @@
 			children = (
 				CA263B3D26FA339200ECFCC7 /* StartGameController.swift */,
 				CA263B5026FA494A00ECFCC7 /* GameScreenViewController.swift */,
+				CA2800CB26FBA07D003DC0F0 /* ResultsTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -114,6 +123,22 @@
 				CA263B5826FA7E7300ECFCC7 /* Game.swift */,
 			);
 			path = Singletones;
+			sourceTree = "<group>";
+		};
+		CA2800CD26FBAB64003DC0F0 /* ClassesSource */ = {
+			isa = PBXGroup;
+			children = (
+				CA2800CE26FBABAE003DC0F0 /* GameSession.swift */,
+			);
+			path = ClassesSource;
+			sourceTree = "<group>";
+		};
+		CA2800D026FBB37E003DC0F0 /* GameTemporaryDataBase */ = {
+			isa = PBXGroup;
+			children = (
+				CA2800D126FBB3A7003DC0F0 /* GameTemporaryDataBase.swift */,
+			);
+			path = GameTemporaryDataBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +212,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA263B5426FA729B00ECFCC7 /* Question.swift in Sources */,
+				CA2800D226FBB3A7003DC0F0 /* GameTemporaryDataBase.swift in Sources */,
+				CA2800CC26FBA07D003DC0F0 /* ResultsTableViewController.swift in Sources */,
+				CA2800CF26FBABAE003DC0F0 /* GameSession.swift in Sources */,
 				CA263B5926FA7E7300ECFCC7 /* Game.swift in Sources */,
 				CA263B3E26FA339200ECFCC7 /* StartGameController.swift in Sources */,
 				CA263B3A26FA339200ECFCC7 /* AppDelegate.swift in Sources */,
