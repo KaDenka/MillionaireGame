@@ -19,7 +19,7 @@ class GameScreenViewController: UIViewController {
     
     // Создаем переменные для обеспечения начала игры
     
-    var rightAnsweredQuestions = 0
+    var rightAnsweredQuestions = Observable<Int>(0)
     var currentPoints = 0
     var questionPoints = 1000
     var questionIndex = 0
@@ -27,6 +27,8 @@ class GameScreenViewController: UIViewController {
     weak var gameDelegate: GameScreenDelegate?
     var gameDifficulty: GameDifficulty = Game.shared.gameSession.gameDifficulty
     var questionsQueueStrategy: QuestionsStrategy = StraightGameStrategy()
+   
+
     
     // Создаем IBOutlet для всех элементов контроллера
     
@@ -40,6 +42,8 @@ class GameScreenViewController: UIViewController {
             playedSumLabel.textColor = .yellow
         }
     }
+    
+    @IBOutlet weak var numberOfQuestionAndPercentLabel: UILabel!
     @IBOutlet weak var questionShowLabel: UILabel!
     @IBOutlet weak var fiftyFiftyButton: UIButton!
     @IBOutlet weak var friendCallButton: UIButton!
@@ -57,6 +61,8 @@ class GameScreenViewController: UIViewController {
         self.view.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.5505234674)
         configScreenElement(currentScoreLabel, nil, nil, nil, nil)
         configScreenElement(playedSumLabel, nil, nil, nil, nil)
+        configScreenElement(numberOfQuestionAndPercentLabel, nil, nil, nil, nil)
+        numberOfQuestionAndPercentLabel.textColor = .white
         configScreenElement(questionShowLabel, nil, nil, nil, nil)
         questionShowLabel.textColor = .white
         configScreenElement(fiftyFiftyButton, nil, fiftyFiftyButton.bounds.height/2, nil, nil)
@@ -71,6 +77,7 @@ class GameScreenViewController: UIViewController {
         nextQuestionButton.isHidden = true
         currentScoreLabel.text = "Выигрыш: \(currentPoints)"
         playedSumLabel.text = "Цена вопроса: \(questionPoints)"
+        numberOfQuestionAndPercentLabel.text = "Правильно: 0, общий процент: 0 %"
         
         
         
@@ -87,6 +94,12 @@ class GameScreenViewController: UIViewController {
         
         // Формируем массив вопросов в зависимости от стратегии игры
         gameQuestions = questionsQueueStrategy.makeQuestionsQueue(questions: GameTemporaryDataBase.shared.gameQuestions)
+        
+        // Добавляем наблюдателя для правильного количества ответов
+        
+        self.rightAnsweredQuestions.addObserver(self, options: [.new, .initial]) { [weak self] (rightAnsweredQuestions, _) in
+            self?.numberOfQuestionAndPercentLabel.text = "Правильно: \(rightAnsweredQuestions), общий процент: \(Double(rightAnsweredQuestions) / Double(self!.gameQuestions.count) * 100) %"
+        }
         
         startGame(index: questionIndex, questions: gameQuestions)
         
@@ -149,7 +162,7 @@ extension GameScreenViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if gameQuestions[questionIndex].answer[indexPath.section].correct == true {
-            rightAnsweredQuestions += 1
+            rightAnsweredQuestions.value += 1
             currentPoints = currentPoints + questionPoints
             currentScoreLabel.text = "Выигрыш: \(currentPoints)"
             questionPoints = questionPoints * 2
@@ -158,12 +171,12 @@ extension GameScreenViewController: UITableViewDataSource, UITableViewDelegate {
             if questionIndex <= gameQuestions.count - 1 {
                 startGame(index: questionIndex, questions: gameQuestions)
             } else {
-                didEndGame(answeredQuestions: rightAnsweredQuestions, earnedMoney: currentPoints)
-                Game.shared.addResult(record: Result(answeredQuestions: rightAnsweredQuestions, earnedMoney: currentPoints))
+                didEndGame(answeredQuestions: rightAnsweredQuestions.value, earnedMoney: currentPoints)
+                Game.shared.addResult(record: Result(answeredQuestions: rightAnsweredQuestions.value, earnedMoney: currentPoints))
             }
         } else {
-            didEndGame(answeredQuestions: rightAnsweredQuestions, earnedMoney: currentPoints)
-            Game.shared.addResult(record: Result(answeredQuestions: rightAnsweredQuestions, earnedMoney: currentPoints))
+            didEndGame(answeredQuestions: rightAnsweredQuestions.value, earnedMoney: currentPoints)
+            Game.shared.addResult(record: Result(answeredQuestions: rightAnsweredQuestions.value, earnedMoney: currentPoints))
         }
     }
     
@@ -178,7 +191,7 @@ extension GameScreenViewController: UITableViewDataSource, UITableViewDelegate {
     func chooseTheStrategy(difficulty: GameDifficulty) -> QuestionsStrategy{
         if difficulty == .straight {
             return StraightGameStrategy()
-        } else { return RandomGameStrategy()}
+        } else { return RandomGameStrategy() }
         
     }
     
@@ -188,7 +201,6 @@ extension GameScreenViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension GameScreenViewController: GameScreenDelegate {
     func didEndGame(answeredQuestions: Int, earnedMoney: Int) {
-        //self.gameDelegate?.didEndGame(answeredQuestions: answeredQuestions, earnedMoney: earnedMoney)
         dismiss(animated: true)
     }
 }

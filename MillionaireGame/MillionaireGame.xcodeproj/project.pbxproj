@@ -24,6 +24,7 @@
 		CAEFAED02701B0AA0071C78F /* GameSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEFAECF2701B0AA0071C78F /* GameSettingsViewController.swift */; };
 		CAEFAED22701BB300071C78F /* GameDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEFAED12701BB300071C78F /* GameDifficulty.swift */; };
 		CAEFAED52701BBAD0071C78F /* QuestionsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEFAED42701BBAD0071C78F /* QuestionsStrategy.swift */; };
+		CAEFAED8270202740071C78F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEFAED7270202740071C78F /* Observable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		CAEFAECF2701B0AA0071C78F /* GameSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsViewController.swift; sourceTree = "<group>"; };
 		CAEFAED12701BB300071C78F /* GameDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDifficulty.swift; sourceTree = "<group>"; };
 		CAEFAED42701BBAD0071C78F /* QuestionsStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsStrategy.swift; sourceTree = "<group>"; };
+		CAEFAED7270202740071C78F /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		CA263B3826FA339200ECFCC7 /* MillionaireGame */ = {
 			isa = PBXGroup;
 			children = (
+				CAEFAED6270202580071C78F /* Observer */,
 				CAEFAED32701BB780071C78F /* Strategy */,
 				CA2800D026FBB37E003DC0F0 /* GameTemporaryDataBase */,
 				CA2800CD26FBAB64003DC0F0 /* ClassesAndStructuresSource */,
@@ -156,6 +159,14 @@
 			path = Strategy;
 			sourceTree = "<group>";
 		};
+		CAEFAED6270202580071C78F /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+				CAEFAED7270202740071C78F /* Observable.swift */,
+			);
+			path = Observer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -227,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAEFAED22701BB300071C78F /* GameDifficulty.swift in Sources */,
+				CAEFAED8270202740071C78F /* Observable.swift in Sources */,
 				CA263B5426FA729B00ECFCC7 /* Question.swift in Sources */,
 				CA2800D226FBB3A7003DC0F0 /* GameTemporaryDataBase.swift in Sources */,
 				CAEFAED02701B0AA0071C78F /* GameSettingsViewController.swift in Sources */,
