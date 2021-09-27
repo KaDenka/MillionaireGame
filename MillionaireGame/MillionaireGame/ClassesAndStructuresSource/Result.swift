@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Result: Codable {
+    var answeredQuestions: Int
+    var earnedMoney: Int
+}

@@ -11,11 +11,15 @@ import UIKit
 
 class StartGameController: UIViewController {
     
+    
+    
     // MARK: - Create the Controller Elements
     
     @IBOutlet weak var gameLogo: UIImageView!
     @IBOutlet weak var startNewGameButton: UIButton!
     @IBOutlet weak var resultsButton: UIButton!
+    @IBOutlet weak var gameSettingsButton: UIButton!
+    
     
     // MARK: - Config the Controller Elements Design
     
@@ -29,24 +33,39 @@ class StartGameController: UIViewController {
         
         configScreenElement(startNewGameButton, .white, 30, nil, nil)
         configScreenElement(resultsButton, .white, 30, nil, nil)
+        configScreenElement(gameSettingsButton, .white, 30, nil, nil)
+        
+//        // Открываем игровую сессию
+//
+//        Game.shared.gameSession = GameSession(totalAnsweredQuestions: 0, totalEarnedMoney: 0)
+        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "fromStartToGameSegue" {
+            if let destinationVC = segue.destination as? GameScreenViewController {
+                destinationVC.gameDelegate = self
+                destinationVC.gameDifficulty = Game.shared.gameSession.gameDifficulty
+            }
+        }
+       
     }
     
     @IBAction func tapTheStartGameButtonAction(_ sender: UIButton) {
-        
-        // var gameSession = GameSession(questionCount: 0, prizeMoney: 0)
-    
+        performSegue(withIdentifier: "fromStartToGameSegue", sender: self)
     }
     
     @IBAction func tapResultButtonAction(_ sender: UIButton) {
     }
     
+    @IBAction func tapGameSettingsButton(_ sender: UIButton) {
+        performSegue(withIdentifier: "fromStartToSettingsSegue", sender: self)
+    }
     
 }
 
@@ -71,4 +90,11 @@ public func configScreenElement<T: UIView>(_ controllerElement: T, _ tintColor: 
     controllerElement.layer.borderColor = border
     controllerElement.layer.borderWidth = 1.5
     controllerElement.clipsToBounds = true
+}
+
+extension StartGameController: GameScreenDelegate {
+    
+    func didEndGame(answeredQuestions: Int, earnedMoney: Int) {
+        Game.shared.gameSession = GameSession(totalAnsweredQuestions: answeredQuestions, totalEarnedMoney: earnedMoney, gameDifficulty: Game.shared.gameSession.gameDifficulty)
+    }
 }

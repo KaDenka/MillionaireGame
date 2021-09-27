@@ -8,9 +8,29 @@
 import Foundation
 
 final class Game {
+    
     static let shared = Game()
     
-    var gameSession: GameSession?
+    var gameSession: GameSession = .init(totalAnsweredQuestions: 0, totalEarnedMoney: 0, gameDifficulty: .straight)
     
-    private init() {}
+    private let recordCaretaker = ResultCareTaker()
+    
+    private(set) var results: [Result] {
+        didSet {
+            recordCaretaker.saveGame(results: results)
+        }
+    }
+    
+    private init() {
+        results = recordCaretaker.loadGame() ?? []
+       
+    }
+    
+    func addResult(record: Result) {
+        results.append(record)
+    }
+    
+    func clearResult() {
+        results.removeAll()
+    }
 }
