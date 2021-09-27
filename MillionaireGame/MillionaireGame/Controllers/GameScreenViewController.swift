@@ -76,11 +76,9 @@ class GameScreenViewController: UIViewController {
         super.viewDidLoad()
         answersTableView.dataSource = self
         answersTableView.delegate = self
+        self.gameDelegate = self
         
         startGame(index: questionIndex)
-        
-        
-        
         
     }
     
@@ -149,25 +147,30 @@ extension GameScreenViewController: UITableViewDataSource, UITableViewDelegate {
             questionIndex += 1
             if questionIndex <= gameQuestions.count - 1 {
                 startGame(index: questionIndex)
-            } else { endGame() }
-        } else { endGame() }
+            } else {
+                didEndGame(answeredQuestions: rightAnsweredQuestions, earnedMoney: currentPoints)
+                Game.shared.addResult(record: Result(answeredQuestions: rightAnsweredQuestions, earnedMoney: currentPoints))
+            }
+        } else {
+            didEndGame(answeredQuestions: rightAnsweredQuestions, earnedMoney: currentPoints)
+            Game.shared.addResult(record: Result(answeredQuestions: rightAnsweredQuestions, earnedMoney: currentPoints))
+        }
     }
     
     // MARK: - Start Game Function
     
-     func startGame (index: Int) {
-        
+    func startGame (index: Int) {
         questionShowLabel.text = gameQuestions[index].question
         answersTableView.reloadData()
     }
     
-    
-    
-    func endGame() {
-        self.gameDelegate?.didEndGame(answeredQuestions: rightAnsweredQuestions, earnedMoney: currentPoints)
-        dismiss(animated: true)
-    }
-
 }
 
+// MARK: - TODO: Исправить работу делегата!
 
+extension GameScreenViewController: GameScreenDelegate {
+    func didEndGame(answeredQuestions: Int, earnedMoney: Int) {
+        //self.gameDelegate?.didEndGame(answeredQuestions: answeredQuestions, earnedMoney: earnedMoney)
+        dismiss(animated: true)
+    }
+}

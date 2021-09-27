@@ -56,18 +56,33 @@
                                     <segue destination="djq-0E-9Oz" kind="presentation" identifier="fromStartToGameSegue" id="JgU-az-YBO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8b-yb-EPx">
+                                <rect key="frame" x="20" y="644" width="374" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="grM-op-h6n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
+                                <state key="normal" title="Настройки"/>
+                                <connections>
+                                    <action selector="tapGameSettingsButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dhu-9r-j5Q"/>
+                                    <segue destination="E4i-dv-NpL" kind="show" identifier="fromStartToSettingsSegue" id="zmU-ES-bgz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="G8b-yb-EPx" firstAttribute="top" secondItem="Fip-vf-c7Q" secondAttribute="bottom" constant="20" id="0tM-zd-y9R"/>
                             <constraint firstItem="dZ9-H6-Zz6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="3AB-b5-JPC"/>
                             <constraint firstItem="ohc-La-5f0" firstAttribute="centerX" secondItem="dZ9-H6-Zz6" secondAttribute="centerX" id="5Ox-hS-fQ8"/>
                             <constraint firstItem="Fip-vf-c7Q" firstAttribute="top" secondItem="dZ9-H6-Zz6" secondAttribute="bottom" constant="20" id="A1k-Kh-HIb"/>
+                            <constraint firstItem="G8b-yb-EPx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Adz-cc-TZt"/>
                             <constraint firstItem="dZ9-H6-Zz6" firstAttribute="leading" secondItem="Fip-vf-c7Q" secondAttribute="leading" id="EVo-2n-2kQ"/>
                             <constraint firstItem="dZ9-H6-Zz6" firstAttribute="centerX" secondItem="Fip-vf-c7Q" secondAttribute="centerX" id="NfB-bl-BYP"/>
                             <constraint firstItem="dZ9-H6-Zz6" firstAttribute="top" secondItem="ohc-La-5f0" secondAttribute="bottom" constant="30" id="Ngx-Tv-elp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dZ9-H6-Zz6" secondAttribute="trailing" constant="20" id="NlA-U3-OTF"/>
                             <constraint firstItem="ohc-La-5f0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="e0G-kC-38N"/>
+                            <constraint firstItem="G8b-yb-EPx" firstAttribute="leading" secondItem="Fip-vf-c7Q" secondAttribute="leading" id="fOF-fi-Mcz"/>
                             <constraint firstItem="BLD-RU-ghn" firstAttribute="centerX" secondItem="Fip-vf-c7Q" secondAttribute="centerX" id="jxZ-QN-Rj2"/>
                             <constraint firstItem="BLD-RU-ghn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="179" id="lnZ-t5-fy6"/>
                             <constraint firstItem="dZ9-H6-Zz6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="s1o-FD-czY"/>
@@ -78,6 +93,7 @@
                     </view>
                     <connections>
                         <outlet property="gameLogo" destination="ohc-La-5f0" id="cip-fH-8EG"/>
+                        <outlet property="gameSettingsButton" destination="G8b-yb-EPx" id="e09-fJ-wo2"/>
                         <outlet property="resultsButton" destination="Fip-vf-c7Q" id="hvW-xd-5FI"/>
                         <outlet property="startNewGameButton" destination="dZ9-H6-Zz6" id="6D6-ae-Pfh"/>
                     </connections>
@@ -221,7 +237,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4oU-Vn-v4K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="915.94202898550736" y="87.723214285714278"/>
+            <point key="canvasLocation" x="916" y="-490"/>
         </scene>
         <!--Results Table View Controller-->
         <scene sceneID="Q81-HW-cH8">
@@ -249,7 +265,74 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XeK-j9-DNc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="916" y="822"/>
+            <point key="canvasLocation" x="916" y="168"/>
+        </scene>
+        <!--Game Settings View Controller-->
+        <scene sceneID="uKi-go-kdn">
+            <objects>
+                <viewController id="E4i-dv-NpL" customClass="GameSettingsViewController" customModule="MillionaireGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XId-pp-SQU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="85" translatesAutoresizingMaskIntoConstraints="NO" id="cND-2w-yvb">
+                                <rect key="frame" x="20" y="175" width="374" height="75"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Сложность:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RQ-hj-15h">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="Wll-HN-oDN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ipP-zZ-kdX">
+                                        <rect key="frame" x="235" y="0.0" width="139" height="76"/>
+                                        <segments>
+                                            <segment title="Легко"/>
+                                            <segment title="Сложно"/>
+                                        </segments>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="selectedSegmentTintColor" red="0.22979062907564199" green="0.56831594875317271" blue="0.8326548331791036" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </segmentedControl>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="FdN-b0-s1i"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Настройки игры:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ig-c5-XQF">
+                                <rect key="frame" x="20" y="40" width="374" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="aJI-03-3ZK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="JG9-nv-0zL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JG9-nv-0zL" firstAttribute="trailing" secondItem="8Ig-c5-XQF" secondAttribute="trailing" constant="20" id="3Mx-OY-E7P"/>
+                            <constraint firstItem="JG9-nv-0zL" firstAttribute="trailing" secondItem="cND-2w-yvb" secondAttribute="trailing" constant="20" id="TSu-Qn-29r"/>
+                            <constraint firstItem="cND-2w-yvb" firstAttribute="centerX" secondItem="XId-pp-SQU" secondAttribute="centerX" id="e9l-CH-7VI"/>
+                            <constraint firstItem="cND-2w-yvb" firstAttribute="leading" secondItem="JG9-nv-0zL" secondAttribute="leading" constant="20" id="kps-f2-qVG"/>
+                            <constraint firstItem="8Ig-c5-XQF" firstAttribute="centerX" secondItem="XId-pp-SQU" secondAttribute="centerX" id="rAk-vS-0X8"/>
+                            <constraint firstItem="8Ig-c5-XQF" firstAttribute="top" secondItem="JG9-nv-0zL" secondAttribute="top" constant="40" id="x9H-Kx-8Cw"/>
+                            <constraint firstItem="cND-2w-yvb" firstAttribute="top" secondItem="8Ig-c5-XQF" secondAttribute="bottom" constant="60" id="zAX-y0-kVQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="0hl-7Z-tDy"/>
+                    <connections>
+                        <outlet property="gameSettingsLabel" destination="8Ig-c5-XQF" id="t6w-Vk-dH0"/>
+                        <outlet property="settingsLabel" destination="7RQ-hj-15h" id="ne8-WB-dA7"/>
+                        <outlet property="settingsSegmentControl" destination="ipP-zZ-kdX" id="fzD-e1-i8F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sge-Hn-TuO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="915.94202898550736" y="854.46428571428567"/>
         </scene>
     </scenes>
     <resources>
