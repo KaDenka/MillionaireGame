@@ -15,7 +15,7 @@ class GameScreenViewController: UIViewController {
     
     // Подгружаем базу данных для игры
     
-    let gameQuestions = GameTemporaryDataBase.shared.gameQuestions
+    var gameQuestions = [Question]()
     
     // Создаем переменные для обеспечения начала игры
     
@@ -25,8 +25,8 @@ class GameScreenViewController: UIViewController {
     var questionIndex = 0
     let totalQuestions = GameTemporaryDataBase.shared.gameQuestions.count
     weak var gameDelegate: GameScreenDelegate?
-    var gameDifficulty: GameDifficulty?
-    
+    var gameDifficulty: GameDifficulty = Game.shared.gameSession.gameDifficulty
+    var questionsQueueStrategy: QuestionsStrategy = StraightGameStrategy()
     
     // Создаем IBOutlet для всех элементов контроллера
     
@@ -72,6 +72,8 @@ class GameScreenViewController: UIViewController {
         currentScoreLabel.text = "Выигрыш: \(currentPoints)"
         playedSumLabel.text = "Цена вопроса: \(questionPoints)"
         
+        
+        
     }
     
     override func viewDidLoad() {
@@ -80,7 +82,13 @@ class GameScreenViewController: UIViewController {
         answersTableView.delegate = self
         self.gameDelegate = self
         
-        startGame(index: questionIndex)
+        // Формируем стратегию игры
+        questionsQueueStrategy = chooseTheStrategy(difficulty: gameDifficulty)
+        
+        // Формируем массив вопросов в зависимости от стратегии игры
+        gameQuestions = questionsQueueStrategy.makeQuestionsQueue(questions: GameTemporaryDataBase.shared.gameQuestions)
+        
+        startGame(index: questionIndex, questions: gameQuestions)
         
     }
     
@@ -95,7 +103,7 @@ class GameScreenViewController: UIViewController {
         questionIndex += 1
         
         if questionIndex <= gameQuestions.count - 1 {
-            startGame(index: questionIndex)
+            startGame(index: questionIndex, questions: gameQuestions)
         } else {
             dismiss(animated: true)
         }
@@ -148,7 +156,7 @@ extension GameScreenViewController: UITableViewDataSource, UITableViewDelegate {
             playedSumLabel.text = "Цена вопроса: \(questionPoints)"
             questionIndex += 1
             if questionIndex <= gameQuestions.count - 1 {
-                startGame(index: questionIndex)
+                startGame(index: questionIndex, questions: gameQuestions)
             } else {
                 didEndGame(answeredQuestions: rightAnsweredQuestions, earnedMoney: currentPoints)
                 Game.shared.addResult(record: Result(answeredQuestions: rightAnsweredQuestions, earnedMoney: currentPoints))
@@ -161,9 +169,17 @@ extension GameScreenViewController: UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Start Game Function
     
-    func startGame (index: Int) {
+    func startGame (index: Int, questions: [Question]) {
+        //gameQuestions = questionsQueueStrategy.makeQuestionsQueue(questions: GameTemporaryDataBase.shared.gameQuestions)
         questionShowLabel.text = gameQuestions[index].question
         answersTableView.reloadData()
+    }
+    
+    func chooseTheStrategy(difficulty: GameDifficulty) -> QuestionsStrategy{
+        if difficulty == .straight {
+            return StraightGameStrategy()
+        } else { return RandomGameStrategy()}
+        
     }
     
 }

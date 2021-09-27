@@ -1,5 +1,5 @@
 //
-//  GameDifficultyStrategy.swift
+//  QuestionsStrategy.swift
 //  MillionaireGame
 //
 //  Created by Denis Kazarin on 27.09.2021.
@@ -20,7 +20,10 @@ final class StraightGameStrategy: QuestionsStrategy {
 
 final class RandomGameStrategy: QuestionsStrategy {
     func makeQuestionsQueue(questions: [Question]) -> [Question] {
-        let queuedQuestions = questions.shuffled()
+        var queuedQuestions: [Question] = []
+        for i in questions.shuffled() {
+            queuedQuestions.append(i)
+        }
         return queuedQuestions
     }
 }

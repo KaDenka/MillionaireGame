@@ -11,7 +11,7 @@ final class Game {
     
     static let shared = Game()
     
-    var gameSession: GameSession?
+    var gameSession: GameSession = .init(totalAnsweredQuestions: 0, totalEarnedMoney: 0, gameDifficulty: .straight)
     
     private let recordCaretaker = ResultCareTaker()
     
@@ -23,6 +23,7 @@ final class Game {
     
     private init() {
         results = recordCaretaker.loadGame() ?? []
+       
     }
     
     func addResult(record: Result) {

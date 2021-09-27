@@ -35,7 +35,7 @@ class GameSettingsViewController: UIViewController {
         
         // Выставляем выбранное положение сегментного переключателя
         
-        setupSettingsSegmentContorol(difficultyLevel: Game.shared.gameSession?.gameDifficulty)
+        setupSettingsSegmentContorol(difficultyLevel: Game.shared.gameSession.gameDifficulty)
         
     }
     
@@ -45,7 +45,7 @@ class GameSettingsViewController: UIViewController {
     
     // Переопределяем сложность игры в GameSession в Singletone Game
     override func viewWillDisappear(_ animated: Bool) {
-            Game.shared.gameSession?.gameDifficulty = self.selectedDifficulty
+            Game.shared.gameSession.gameDifficulty = self.selectedDifficulty
     }
     
     // Функция определения положения ползунка сегментного переключателя
