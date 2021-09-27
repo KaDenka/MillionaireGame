@@ -34,6 +34,11 @@ class StartGameController: UIViewController {
         configScreenElement(startNewGameButton, .white, 30, nil, nil)
         configScreenElement(resultsButton, .white, 30, nil, nil)
         configScreenElement(gameSettingsButton, .white, 30, nil, nil)
+        
+        // Открываем игровую сессию
+        
+        Game.shared.gameSession = GameSession(totalAnsweredQuestions: 0, totalEarnedMoney: 0)
+        
     }
     
     
@@ -43,10 +48,12 @@ class StartGameController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "fromStartToGameSegue" {
-            if let destination = segue.destination as? GameScreenViewController {
-                destination.gameDelegate = self
+            if let destinationVC = segue.destination as? GameScreenViewController {
+                destinationVC.gameDelegate = self
+                destinationVC.gameDifficulty = Game.shared.gameSession?.gameDifficulty
             }
         }
+       
     }
     
     @IBAction func tapTheStartGameButtonAction(_ sender: UIButton) {
@@ -57,6 +64,7 @@ class StartGameController: UIViewController {
     }
     
     @IBAction func tapGameSettingsButton(_ sender: UIButton) {
+        performSegue(withIdentifier: "fromStartToSettingsSegue", sender: self)
     }
     
 }
@@ -85,6 +93,7 @@ public func configScreenElement<T: UIView>(_ controllerElement: T, _ tintColor: 
 }
 
 extension StartGameController: GameScreenDelegate {
+    
     func didEndGame(answeredQuestions: Int, earnedMoney: Int) {
         Game.shared.gameSession = GameSession(totalAnsweredQuestions: answeredQuestions, totalEarnedMoney: earnedMoney)
     }

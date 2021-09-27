@@ -18,12 +18,14 @@ class GameScreenViewController: UIViewController {
     let gameQuestions = GameTemporaryDataBase.shared.gameQuestions
     
     // Создаем переменные для обеспечения начала игры
+    
     var rightAnsweredQuestions = 0
     var currentPoints = 0
     var questionPoints = 1000
     var questionIndex = 0
     let totalQuestions = GameTemporaryDataBase.shared.gameQuestions.count
     weak var gameDelegate: GameScreenDelegate?
+    var gameDifficulty: GameDifficulty?
     
     
     // Создаем IBOutlet для всех элементов контроллера
